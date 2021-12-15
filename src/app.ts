@@ -8,5 +8,4 @@ app.use(cors());
 
 app.use('/status', statusRouter)
 
-
 export default app;
