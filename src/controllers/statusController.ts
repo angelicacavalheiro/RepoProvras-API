@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 export async function statusController(req: Request, res: Response) {
+
     res.send('server online')
 }
 
