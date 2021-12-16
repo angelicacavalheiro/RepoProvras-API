@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Professor from '../entities/Professor';
+import ProfessorDisciplina from '../entities/ProfessorDisciplina';
 
 export async function findOne (req: Request, res: Response) {
     const id = Number(req.params.id)
@@ -23,4 +24,11 @@ export async function insert (req: Request, res: Response) {
         nome,
     });
     res.sendStatus(200)
+}
+
+export async function listProfessorEDisciplina (req: Request, res: Response) {
+    const result = await getRepository(ProfessorDisciplina).find();
+    res.send({
+        ...result,
+    })
 }
