@@ -3,8 +3,7 @@ CREATE TABLE "provas" (
 	"link" TEXT NOT NULL,
 	"nome_id" varchar(255) NOT NULL,
 	"tipo_id" integer NOT NULL,
-	"disciplina_id" integer NOT NULL,
-	"professor_id" integer NOT NULL,
+	"professor_disciplina_id" integer NOT NULL,
 	CONSTRAINT "provas_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -52,22 +51,26 @@ CREATE TABLE "semestres" (
 
 
 
+CREATE TABLE "professor_disciplina" (
+	"id" serial NOT NULL,
+	"professor_id" integer NOT NULL,
+	"disciplina_id" integer NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk0" FOREIGN KEY ("nome_id") REFERENCES "semestres"("nome");
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk1" FOREIGN KEY ("tipo_id") REFERENCES "tipos"("id");
-ALTER TABLE "provas" ADD CONSTRAINT "provas_fk2" FOREIGN KEY ("disciplina_id") REFERENCES "disciplinas"("id");
-ALTER TABLE "provas" ADD CONSTRAINT "provas_fk3" FOREIGN KEY ("professor_id") REFERENCES "professores"("id");
+ALTER TABLE "provas" ADD CONSTRAINT "provas_fk2" FOREIGN KEY ("professor_disciplina_id") REFERENCES "professor_disciplina"("id");
 
 
 
 
 
-
-
-
-
-
-
-
+ALTER TABLE "professor_disciplina" ADD CONSTRAINT "professor_disciplina_fk0" FOREIGN KEY ("professor_id") REFERENCES "professores"("id");
+ALTER TABLE "professor_disciplina" ADD CONSTRAINT "professor_disciplina_fk1" FOREIGN KEY ("disciplina_id") REFERENCES "disciplinas"("id");
 
 
 
