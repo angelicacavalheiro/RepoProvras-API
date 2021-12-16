@@ -1,7 +1,7 @@
 CREATE TABLE "provas" (
 	"id" serial NOT NULL,
 	"link" TEXT NOT NULL,
-	"nome_id" varchar(255) NOT NULL,
+	"nome_id" integer NOT NULL,
 	"tipo_id" integer NOT NULL,
 	"professor_disciplina_id" integer NOT NULL,
 	CONSTRAINT "provas_pk" PRIMARY KEY ("id")
@@ -61,7 +61,7 @@ CREATE TABLE "professor_disciplina" (
 
 
 
-ALTER TABLE "provas" ADD CONSTRAINT "provas_fk0" FOREIGN KEY ("nome_id") REFERENCES "semestres"("nome");
+ALTER TABLE "provas" ADD CONSTRAINT "provas_fk0" FOREIGN KEY ("nome_id") REFERENCES "semestres"("id");
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk1" FOREIGN KEY ("tipo_id") REFERENCES "tipos"("id");
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk2" FOREIGN KEY ("professor_disciplina_id") REFERENCES "professor_disciplina"("id");
 
