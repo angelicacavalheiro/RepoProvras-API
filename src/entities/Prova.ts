@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column } from "typeorm";
 import Semestre from "./Semestre";
 import ProfessorDisciplina from "./ProfessorDisciplina";
 import Tipo from "./Tipo";
@@ -11,15 +11,15 @@ export default class Prova {
   @Column()
   link: string;
 
-  @OneToOne(() => Semestre, { eager: true })
+  @ManyToOne(() => Semestre, NomeId => NomeId.id, { eager: true})
   @JoinColumn({ name: 'nome_id'})
-  semestreId: Semestre
+  NomeId: Semestre
 
-  @OneToOne(() => Tipo, { eager: true })
+  @ManyToOne(() => Tipo, tipoId => tipoId.id, { eager: true})
   @JoinColumn({ name: 'tipo_id'})
   tipoId: Tipo
 
-  @OneToOne(() => ProfessorDisciplina, { eager: true })
+  @ManyToOne(() => ProfessorDisciplina, professorDiciplinaId => professorDiciplinaId.id, { eager: true})
   @JoinColumn({ name: 'professor_disciplina_id'})
-  professorDiciplina: ProfessorDisciplina
+  professorDiciplinaId: ProfessorDisciplina
 }

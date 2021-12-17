@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/status', statusRouter)
+
 app.get('/professor/:id', professorController.findOne)
 app.get('/professor', professorController.list)
 app.post('/professor', professorController.insert)

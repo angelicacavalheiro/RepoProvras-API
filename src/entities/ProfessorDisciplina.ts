@@ -1,18 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import Disciplina from "./Disciplina";
 import Professor from "./Professor";
+import Prova from "./Prova";
 
 @Entity('professor_disciplina')
 export default class ProfessorDisciplina {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Professor)
+  @ManyToOne(() => Professor, professorId => professorId.id, { eager: true})
   @JoinColumn({ name: 'professor_id'})
   professorId: Professor
 
-  @OneToOne(() => Disciplina, { eager: true})
+  @ManyToOne(() => Disciplina, disciplinaId => disciplinaId.id, { eager: true})
   @JoinColumn({ name: 'disciplina_id'})
   disciplinaId: Disciplina
 
+  @OneToMany(() => Prova, prova => prova.professorDiciplinaId)
+  prova: Prova
 }

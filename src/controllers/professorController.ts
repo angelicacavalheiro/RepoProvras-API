@@ -2,11 +2,13 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Professor from '../entities/Professor';
 import ProfessorDisciplina from '../entities/ProfessorDisciplina';
+import Prova from '../entities/Prova'
+
 
 export async function findOne (req: Request, res: Response) {
     const id = Number(req.params.id)
     console.log(id)
-    const result = await getRepository(Professor).find({ id: id }) //primeiro id é a propriedade, segundo e a constante
+    const result = await getRepository(Prova).find() //primeiro id é a propriedade, segundo e a constante
     console.log(result)
     res.send(result);
 }
