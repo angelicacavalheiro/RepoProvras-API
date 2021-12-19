@@ -65,8 +65,8 @@ ALTER TABLE "provas" ADD CONSTRAINT "provas_fk0" FOREIGN KEY ("nome_id") REFEREN
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk1" FOREIGN KEY ("tipo_id") REFERENCES "tipos"("id");
 ALTER TABLE "provas" ADD CONSTRAINT "provas_fk2" FOREIGN KEY ("professor_disciplina_id") REFERENCES "professor_disciplina"("id");
 
-
-
+-- ALTER TABLE "disciplinas" ADD "semestre_id" integer;
+-- ALTER TABLE "disciplinas" ADD CONSTRAINT "disciplinas_fk0" FOREIGN KEY ("semestre_id") REFERENCES "semestres"("id");
 
 
 ALTER TABLE "professor_disciplina" ADD CONSTRAINT "professor_disciplina_fk0" FOREIGN KEY ("professor_id") REFERENCES "professores"("id");

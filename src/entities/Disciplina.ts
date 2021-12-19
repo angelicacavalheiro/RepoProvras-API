@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
-import ProfessorDisciplina from "./ProfessorDisciplina";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToMany, ManyToOne } from "typeorm";
+import Periodo from './Periodo'
+import Prova from './Prova';
 
 @Entity('disciplinas')
 export default class Disciplina {
@@ -9,6 +10,13 @@ export default class Disciplina {
   @Column()
   nome: string;
 
-  @OneToMany(() => ProfessorDisciplina, professorDisciplina => professorDisciplina.disciplinaId)
-  professorDisciplina: ProfessorDisciplina
+  @Column({ name: 'periodo_id' })
+  periodoId: string;
+
+  @ManyToOne(() => Periodo, periodo => periodo.id)
+  @JoinColumn({ name: 'periodo_id' })
+  periodo: Periodo;
+
+  @OneToMany(() => Prova, prova => prova.diciplinaId)
+  prova: Prova;
 }

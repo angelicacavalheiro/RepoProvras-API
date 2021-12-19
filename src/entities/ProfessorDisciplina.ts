@@ -16,6 +16,4 @@ export default class ProfessorDisciplina {
   @JoinColumn({ name: 'disciplina_id'})
   disciplinaId: Disciplina
 
-  @OneToMany(() => Prova, prova => prova.professorDiciplinaId)
-  prova: Prova
 }

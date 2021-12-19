@@ -9,6 +9,6 @@ export default class Tipo {
   @Column()
   nome: string;
 
-  @OneToMany(() => Prova, prova => prova.tipoId)
-  prova: Prova
+  @OneToMany(() => Prova, prova => prova.tipo, {eager: true})
+  prova: Prova;
 }

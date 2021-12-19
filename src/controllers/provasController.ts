@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, createQueryBuilder } from 'typeorm';
 import Prova from '../entities/Prova';
+import Tipo from '../entities/Tipo';
 
 export async function findOne (req: Request, res: Response) {
     const id = Number(req.params.id)
@@ -11,7 +12,14 @@ export async function findOne (req: Request, res: Response) {
 }
 
 export async function list (req: Request, res: Response) {
-    const result = await getRepository(Prova).find();
+    const result = await getRepository(Prova).find()
+    res.send({
+        ...result,
+    })
+}
+
+export async function listarPorTipo (req: Request, res: Response) {
+    const result = await getRepository(Tipo).find()
     res.send({
         ...result,
     })

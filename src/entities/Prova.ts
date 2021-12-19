@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column } from "typeorm";
 import Semestre from "./Semestre";
-import ProfessorDisciplina from "./ProfessorDisciplina";
+import Professor from "./Professor";
+import Disciplina from "./Disciplina";
 import Tipo from "./Tipo";
 
 @Entity('provas')
@@ -9,17 +10,21 @@ export default class Prova {
   id: number;
 
   @Column()
-  link: string;
+  url: string;
 
   @ManyToOne(() => Semestre, NomeId => NomeId.id, { eager: true})
   @JoinColumn({ name: 'nome_id'})
   NomeId: Semestre
 
-  @ManyToOne(() => Tipo, tipoId => tipoId.id, { eager: true})
-  @JoinColumn({ name: 'tipo_id'})
-  tipoId: Tipo
+  @ManyToOne(() => Professor, professorId => professorId.id, { eager: true})
+  @JoinColumn({ name: 'professores_id'})
+  professorId: Professor;
 
-  @ManyToOne(() => ProfessorDisciplina, professorDiciplinaId => professorDiciplinaId.id, { eager: true})
-  @JoinColumn({ name: 'professor_disciplina_id'})
-  professorDiciplinaId: ProfessorDisciplina
+  @ManyToOne(() => Disciplina, diciplinaId => diciplinaId.id, { eager: true})
+  @JoinColumn({ name: 'disciplina_id'})
+  diciplinaId: Disciplina;
+
+  @ManyToOne(() => Tipo, tipo => tipo.id)
+  @JoinColumn({ name: 'tipo_id' })
+  tipo: Tipo;
 }
