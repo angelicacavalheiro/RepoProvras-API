@@ -25,6 +25,9 @@ app.get('/semester/:id', professorController.findOneSemester)
 app.get('/provas/:id', provasController.findOne)
 app.get('/provas', provasController.list)
 
+app.get('/tipo/:professorId', provasController.listarPorTipoProfessorId)
+app.get('/tipo/:disciplinaId', provasController.listarPorTipoDisciplinaId)
+
 app.get('/semesters', periodosController.findAllSemesters)
 app.get('/professor', professorController.list)
 app.get('/tipo', provasController.listarPorTipo)

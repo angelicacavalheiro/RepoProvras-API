@@ -150,5 +150,7 @@ INSERT INTO professor_disciplina (professor_id, disciplina_id) VALUES (6, 7);
 INSERT INTO professor_disciplina (professor_id, disciplina_id) VALUES (7, 7);
 INSERT INTO professor_disciplina (professor_id, disciplina_id) VALUES (8, 7);
 
+-- até aqui esta tudo no banco do heroku
+
 
 INSERT INTO provas (url, professores_id, nome_id, disciplina_id, tipo_id) VALUES ('teste.pdf', 1, 1, 1, 1);

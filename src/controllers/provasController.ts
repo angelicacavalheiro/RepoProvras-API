@@ -20,10 +20,35 @@ export async function list (req: Request, res: Response) {
 
 export async function listarPorTipo (req: Request, res: Response) {
     const result = await getRepository(Tipo).find()
+    res.send(result)
+}
+
+export async function listarPorTipoProfessorId (req: Request, res: Response) {
+    const id = Number(req.params.professorId)
+    const result = await getRepository(Tipo).find({
+        where: {
+            prova: { professorId: id },
+            },
+        relations: ["prova"],
+     })
     res.send({
         ...result,
     })
 }
+
+export async function listarPorTipoDisciplinaId (req: Request, res: Response) {
+    const id = Number(req.params.disciplinaId)
+    const result = await getRepository(Tipo).find({
+        where: {
+            NomeId:  { id: id },
+            },
+        relations: ["NomeId"],
+     })
+    res.send({
+        ...result,
+    })
+}
+
 
 // export async function insert (req: Request, res: Response) {
 //     const nome: string = req.body.nome
