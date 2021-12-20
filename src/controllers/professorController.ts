@@ -27,6 +27,17 @@ export async function findOneSemester(req: Request, res: Response) {
     res.send(result);
 }
 
+export async function listProfessorEDisciplina (req: Request, res: Response) {
+    const id = Number(req.params.id)
+    const result = await getRepository(ProfessorDisciplina).find({
+			where: {
+				professorId:  { id: id },
+					},
+			relations: ["professorId"],
+     });
+    res.send(result)
+}
+
 export async function findSemester(req: Request, res: Response) {
     const result = await getRepository(Disciplina).find()
     res.send(result);
@@ -37,17 +48,3 @@ export async function list (req: Request, res: Response) {
     res.send(result)
 }
 
-export async function insert (req: Request, res: Response) {
-    const nome: string = req.body.nome
-    const result = await getRepository(Professor).insert({
-        nome,
-    });
-    res.sendStatus(200)
-}
-
-export async function listProfessorEDisciplina (req: Request, res: Response) {
-    const result = await getRepository(ProfessorDisciplina).find();
-    res.send({
-        ...result,
-    })
-}

@@ -15,23 +15,11 @@ app.use(express.json());
 
 app.use('/status', statusRouter)
 
-app.get('/professor/:id', professorController.findOne)
-app.post('/professor', professorController.insert)
-app.get('/professorEDisciplinas', professorController.listProfessorEDisciplina)
-
-app.get('/semester/:id', professorController.findOneSemester)
-//app.get('/semester', professorController.findSemester)
-
-app.get('/provas/:id', provasController.findOne)
-app.get('/provas', provasController.list)
-
-app.get('/tipo/:professorId', provasController.listarPorTipoProfessorId)
-app.get('/tipo/:disciplinaId', provasController.listarPorTipoDisciplinaId)
-
 app.get('/semesters', periodosController.findAllSemesters)
 app.get('/professor', professorController.list)
 app.get('/tipo', provasController.listarPorTipo)
-
+app.get('/professor-disciplina/:id', professorController.listProfessorEDisciplina)
+app.post('/insertTest', provasController.insert)
 
 export async function init () {
   await connectDatabase();

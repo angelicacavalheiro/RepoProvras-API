@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import Disciplina from "./Disciplina";
 import Professor from "./Professor";
-import Prova from "./Prova";
 
 @Entity('professor_disciplina')
 export default class ProfessorDisciplina {
